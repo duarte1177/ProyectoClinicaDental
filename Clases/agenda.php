@@ -1,13 +1,17 @@
 <?php
 	class agenda{
 		private $id_Agenda;
-		private $id_Usuario_Tipo_Usuario;
-		private $descripcion;
+		private $id_Paciente;
+		private $id_Odontologo;
+		private $id_Dia;
+		private $hora_Cita;
 		
-		public function __Construct($id_Agenda, $id_Usuario_Tipo_Usuario = NULL, $descripcion = NULL){
+		public function __Construct($id_Agenda, $id_Paciente = NULL, $id_Odontologo = NULL, $id_Dia = NULL, $hora_Cita = NULL){
 			$this->idAgenda = $id_Agenda;
-			$this->idUsuarioTipoUsuario = $id_Usuario_Tipo_Usuario;
-			$this->descripcion = $descripcion;
+			$this->idPaciente = $id_Paciente;
+			$this->idOdontologo = $id_Odontologo;
+			$this->idDia = $id_Dia;
+			$this->horaCita = $hora_Cita;
 		}
 		
 		public function cargarAgendaDB(){
@@ -17,29 +21,42 @@
 		$db->setQuery($sql);
 		$agenda = $db->loadObjectList();
 		$this->idAgenda = $agenda[0]->ID_AGENDA;
-		$this->idUsuarioTipoUsuario = $agenda[0]->ID_USUARIO_TIPO_USUARIO;
-		$this->descripcion = $agenda[0]->DESCRIPCION;
+		$this->idPaciente = $agenda[0]->ID_PACIENTE;
+		$this->idOdontologo = $agenda[0]->ID_ODONTOLOGO;
+		$this->idDia = $agenda[0]->ID_DIA;
+		$this->horaCita = $agenda[0]->HORA_CITA;
 	}
-	
 		
 		public function setIdAgenda($id_AgendaNuevo){
 			$this->idAgenda = $id_AgendaNuevo;
 		}
-		public function setIdUsuarioTipoUsuario($id_Usuario_Tipo_UsuarioNuevo){
-			$this->idUsuarioTipoUsuario = $id_Usuario_Tipo_UsuarioNuevo;
+		public function setIdPaciente($id_PacienteNuevo){
+			$this->idPaciente = $id_PacienteNuevo;
 		}
-		public function setDescripcion($descripcionNuevo){
-			$this->descripcion = $descripcionNuevo;
+		public function setIdOdontologo($id_OdontologoNuevo){
+			$this->idOdontologo = $id_OdontologoNuevo;
+		}
+		public function setIdDia($idDiaNuevo){
+			$this->idDia = $idDiaNuevo;
+		}
+		public function setHoraCita($horaCitaNuevo){
+			$this->horaCita = $horaCitaNuevo;
 		}
 		
 		public function getIdAgenda(){
 			return $this->idAgenda;
 		}
-		public function getIdUsuarioTipoUsuario(){
-			return $this->id_Usuario_Tipo_Usuario;
+		public function getIdPaciente(){
+			return $this->idPaciente;
 		}
-		public function getDescripcion(){
-			return $this->descripcion;
+		public function getIdOdontologo(){
+			return $this->idOdontologo;
+		}
+		public function getIdDia(){
+			return $this->idDia;
+		}
+		public function getIdOdontologo(){
+			return $this->idOdontologo;
 		}
 	}
 ?>
