@@ -10,6 +10,17 @@
 			$this->descripcion = $descripcion;
 		}
 		
+		public function cargarPiezaDB(){
+		
+		$db = DB::getInstance();
+		$sql= "SELECT * FROM  `piezas` WHERE  `ID_PIEZA` = $this->idPieza LIMIT 1";
+		$db->setQuery($sql);
+		$pieza = $db->loadObjectList();
+		$this->idPieza = $pieza[0]->ID_PIEZA;
+		$this->idOdontograma = $pieza[0]->ID_ODONTOGRAMA;
+		$this->descripcion = $pieza[0]->DESCRIPCION;
+	}
+		
 		public function setIdPieza($id_piezaNueva){
 			$this->id_Pieza = $id_piezaNueva;
 		}
