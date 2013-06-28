@@ -1,8 +1,9 @@
 <?php
 	class anio{
 		private $id_Anio;
+		private $anio;
 		
-		public function __Construct($id_Anio){
+		public function __Construct($id_Anio, $anio = NULL){
 			$this->idAnio = $id_Anio;
 			$this->anio = $id_Anio;
 		}
