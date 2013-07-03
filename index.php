@@ -15,11 +15,19 @@
 			<h3><a href="crearFichaPaciente.php"> Crear Nuevo Paciente</a>
 			</h3>
     	<br />
-			<h3> Ver Ficah Pacienrte</h3>
+			<h3> Ver Ficha Pacienrte</h3>
 				<form action="verFichaPaciente.php" method="get">
 					<input type="text" name="rut" />
 		<br />
 				<input type="submit" />
 				</form>
+        <br />
+			<h3> Ver Cita Paciente </h3>
+				<form action="verCita.php" method="get">
+					<input type="text" name="id_cita" />
+		<br />
+				<input type="submit" />
+				</form>
+        
 	</BODY>	
 </HTML>
