@@ -16,9 +16,6 @@ create table USUARIO
    constraint PK_USUARIO primary key clustered (RUT_USUARIO)
 );
 
-
-
-
 /*==============================================================*/
 /* Table: TIPOS_USUARIOS                                        */
 /*==============================================================*/
@@ -29,21 +26,6 @@ create table TIPOS_USUARIOS
    DESCRIPCION          varchar(70)                    null,
    constraint PK_TIPOS_USUARIOS primary key clustered (ID_TIPO_USUARIO)
 );
-
-
-/*==============================================================*/
-/* Table: ROL                                                   */
-/*==============================================================*/
-create table ROL 
-(
-   ID_ROL               integer                        not null,
-   ID_TIPO_USUARIO      integer                        null,
-   NOMBRE_ROL           varchar(50)                    null,
-   PERMISO              varchar(50)                    null,
-   DESCRIPCION          varchar(70)                    null,
-   constraint PK_ROL primary key clustered (ID_ROL)
-);
-
 
 /*==============================================================*/
 /* Table: USUARIOS_TIPOS_USUARIOS                               */
@@ -58,18 +40,19 @@ create table USUARIOS_TIPOS_USUARIOS
 
 
 /*==============================================================*/
-/* Table: AGENDA                                                */
+/* Table: CITA                                                  */
 /*==============================================================*/
-create table AGENDA 
+create table CITA 
 (
-   ID_AGENDA            integer                        not null,
-   ID_PACIENTE          integer                        null,
-   ID_ODONTOLOGO        integer                        null,
-   ID_DIA               integer                        null,
+   ID_CITA              char(10)                       not null,
+   ID_AGENDA            integer                        null,
+   ID_PACIENTE          varchar(13)                    null,
+   ID_MEDICO            varchar(13)                    null,
+   FECHA_CITA           char(10)                       null,
    HORA_CITA            date                           null,
-   constraint PK_AGENDA primary key clustered (ID_AGENDA)
+   TRATAMIENTO          varchar(150)                   null,
+   constraint PK_CITA primary key clustered (ID_CITA)
 );
-
 
 /*==============================================================*/
 /* Table: DIA                                                   */

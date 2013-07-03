@@ -1,7 +1,5 @@
 <?php
-	include 'Clases/db.php';
-	include 'Clases/tipos_Usuarios.php';
-	include 'Clases/usuario.php';
+	include 'Clases/clases.php';
 	if (isset($_GET['rut']) == false)
 		$rut_id = 0;	
 	else
@@ -15,7 +13,7 @@
 			<table width="200" border="1">
 			  <tr>
 				<td>Nombres</td>
-				<td><?php echo $usuario->getNombre();  ?></td>
+				<td><?php echo $usuario->getNombres();  ?></td>
 			  </tr>
 				<tr>
 				<td>Apellidos</td>

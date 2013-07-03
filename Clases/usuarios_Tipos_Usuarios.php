@@ -1,10 +1,10 @@
 <?php
 	class usuarios_Tipos_Usuario {
-		private id_Usuario_Tipo_Usuario;
-		private id_Usuario;
-		private id_Tipo_Usuario;
+		private $id_Usuario_Tipo_Usuario;
+		private $id_Usuario;
+		private $id_Tipo_Usuario;
 		
-	public function __construct($id_Usuario_Tipo_Usuario,$id_Usuario,$id_Tipo_Usuario){
+	public function __construct($id_Usuario_Tipo_Usuario, $id_Usuario = NULL, $id_Tipo_Usuario = NULL){
 		$this->id_Usuario_Tipo_Usuario = $id_Usuario_Tipo_Usuario;
 		$this->id_Usuario = $id_Usuario;
 		$this->id_Tipo_Usuario = $id_Tipo_Usuario;

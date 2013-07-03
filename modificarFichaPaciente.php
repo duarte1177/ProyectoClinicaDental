@@ -1,7 +1,5 @@
 <?PHP
-	include 'Clases/db.php';
-	include 'Clases/tipos_Usuarios.php';
-	include 'Clases/usuario.php';
+	include 'Clases/clases.php';
 	
 	$nombres = "";
 	$apellidos = "";
@@ -16,7 +14,7 @@
 		$usuario = new usuario($_GET['rutUsuarioModificar']);			
 		if ($usuario->existeUsuarioDB() == true){
 			$usuario->cargarUsuarioDB();
-			$nombres = $usuario->getNombre();
+			$nombres = $usuario->getNombres();
 			$apellidos = $usuario->getApellidos();
 			$direccion = $usuario->getDireccion();
 			$telefono = $usuario->getTelefono();
@@ -40,20 +38,21 @@
 
 <HEAD>
     <TITLE><H3>MODIFICAR FICHA PACIENTE</H3></TITLE>
+    	<script language="javascript" type="text/javascript" src="js/validar.js"></script>
     </HEAD>
     <BODY>
-    	<FORM name="formularioRegistro" method="POST" action="crearFichaPaciente.php">
+    	<FORM name="formularioRegistro" method="POST" action="crearFichaPaciente.php" onsubmit="return validar();">
         <TABLE>
         <TR>
             <TD>NOMBRES</TD>
             <TD>
-                <input type="text" name="nombres" size="50" maxlength="50" value="<?php echo $nombres; ?>"/>
+                <input type="text" name="nombres" size="50" maxlength="50" onkeypress="return soloLetras(event);" value="<?php echo $nombres; ?>"/>
             </TD>
         </TR>
         <TR>
             <TD>APELLIDOS</TD>
             <TD>
-                <input type="text" name="apellidos" size="50" maxlength="50" value="<?php echo $apellidos; ?>"/>
+                <input type="text" name="apellidos" size="50" maxlength="50" onkeypress="return soloLetras(event);" value="<?php echo $apellidos; ?>"/>
             </TD>
         </TR>
         <TR>
@@ -65,13 +64,13 @@
         <TR>
             <TD>TELEFONO</TD>
             <TD>
-               	<input type="text" name="telefono" size="12" maxlength="12" value="<?php echo $telefono; ?>"/>
+               	<input type="text" name="telefono" size="12" maxlength="12" onkeypress="return soloNumeros(event);" value="<?php echo $telefono; ?>"/>
             </TD>
         </TR>
         <TR>
             <TD>RUT</TD>
             <TD>
-               	<input type="text" name="rut" size="13" maxlength="13" value="<?php echo $rut; ?>"/>
+               	<input type="text" name="rut" size="13" maxlength="13" onkeypress="return soloRut(event);"ue="<?php echo $rut; ?>"/>
             </TD>
         </TR>
         <TR>

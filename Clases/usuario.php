@@ -5,15 +5,15 @@ class usuario{
 	private $nombres;
 	private	$apellidos;
 	private	$direccion;
-	private $telefono;
+	private $telefono;		
 	private $email;
 	private $fechaNacimiento;
 	private $contrasena;
 	private $tipoUsuario;
 	
-	public function __construct($rut_Usuario,$nombres = NULL, $apellidos = NULL, $direccion = NULL,$telefono = NULL, $email = NULL, $fechaNacimiento = NULL, $contrasena = NULL, $tipoUsuario = NULL){
-		$this->rutUsuario =$rut_Usuario;
-		$this->nombre = $nombres;
+	public function __construct($rut_Usuario, $nombres = NULL, $apellidos = NULL, $direccion = NULL,$telefono = NULL, $email = NULL, $fechaNacimiento = NULL, $contrasena = NULL, $tipoUsuario = NULL){
+		$this->rut_Usuario = $rut_Usuario;
+		$this->nombres 	= $nombres;
 		$this->apellidos = $apellidos;
 		$this->direccion = $direccion;
 		$this->telefono = $telefono;
@@ -25,7 +25,7 @@ class usuario{
 	public function cargarUsuarioDB(){
 		
 		$db = DB::getInstance();
-		$sql = "SELECT * FROM  `usuarios` WHERE  `RUT_USUARIO` = $this->rutUsuario LIMIT 1";
+		$sql = "SELECT * FROM  `usuarios` WHERE  `RUT_USUARIO` = $this->rut_Usuario LIMIT 1";
 		$db->setQuery($sql);
 		$usuario = $db->loadObjectList();
 		$this->rutUsuario = $usuario[0]->RUT_USUARIO;
@@ -39,7 +39,7 @@ class usuario{
 		
 	
 				
-		$sql = "SELECT * FROM `usuarios_tipos_usuarios` WHERE `RUT_USUARIO` = $this->rutUsuario";
+		$sql = "SELECT * FROM `usuarios_tipos_usuarios` WHERE `RUT_USUARIO` = $this->rut_Usuario";
 		$db->setQuery($sql);
 		$tiposUsuarioDB = $db->loadObjectList();
 		$tipos_usuarios = array();
@@ -62,12 +62,12 @@ class usuario{
 			`E_MAIL` =  '$this->email',
 			`FECHA_NACIMIENTO` =  '$this->fechaNacimiento',
 			`CONTRASENA` =  '$this->contrasena'
-			 WHERE  `usuarios`.`RUT_USUARIO` = $this->rutUsuario";
+			 WHERE  `usuarios`.`RUT_USUARIO` = $this->rut_Usuario";
 		}else{		
 
 			$sql = "INSERT INTO  `clinicadental`.`usuarios` (
 					`RUT_USUARIO` ,	`NOMBRES` , `APELLIDOS` , `DIRECCION` , `TELEFONO` ,`E_MAIL` , `FECHA_NACIMIENTO`, `CONTRASENA`)VALUES (
-					'$this->rutUsuario',  '$this->nombres',  '$this->apellidos',  '$this->direccion',  '$this->telefono',  '$this->email',  '$this->fechaNacimiento', '$this->contrasena')";
+					'$this->rut_Usuario',  '$this->nombres',  '$this->apellidos',  '$this->direccion',  '$this->telefono',  '$this->email',  '$this->fechaNacimiento', '$this->contrasena')";
 		}
 		$db->setQuery($sql);
 		$db->execute();
@@ -78,7 +78,7 @@ class usuario{
 	
 	public function existeUsuarioDB(){
 		$db = DB::getInstance();
-		$sql = "SELECT * FROM `usuarios` WHERE `RUT_USUARIO` = '$this->rutUsuario' LIMIT 1";
+		$sql = "SELECT * FROM `usuarios` WHERE `RUT_USUARIO` = '$this->rut_Usuario' LIMIT 1";
 		$db->setQuery($sql);
 		$usuario = $db->loadObjectList();
 		if (count($usuario) >0)//si la cantidad de datos es > 0, entoces llegaron datos
@@ -88,21 +88,22 @@ class usuario{
 	}
 	
 	public function usuarioPerteneceAPerfil($idPerfil){
-		foreach ($this->tipoUsuario as $tipoUsuarioASalir){
-				if ($idPerfil == $tipoUsuarioASalir->getId_Tipo_Usuario() )
-				return true;
+		foreach ($this->tipoUsuario as $tipo_UsuarioASalir){
+				if ($idPerfil == $tipo_UsuarioASalir->getId_Tipo_Usuario() )
+					return true;
 		}
-	return false;
+		return false;
 		
 	}
 		
-	public function setRut_Usuario($rut_UsuarioNuevo){
+	public function setRutUsuario($rut_UsuarioNuevo){
 		$this->rutUsuario = $idUsuarioNuevo;
 	}
-	public function setNombre($nombreNuevo){
-		$this->nombres = $nombreNuevo;
+	public function setNombre($nombresNuevo){
+		$this->nombres = $nombresNuevo;
 	}	
-	public function setApellidos($apellidosNuevo){		$this->apellidos = $apellidosNuevo;
+	public function setApellidos($apellidosNuevo){		
+		$this->apellidos = $apellidosNuevo;
 	}
 	public function setDireccion($direccionNuevo){
 		$this->direccion = $direccionNuevo;
@@ -113,17 +114,17 @@ class usuario{
 	public function setEmail($emailNuevo){
 		$this->email = $emailNuevo;
 	}
-	public function setFechaNacimiento($fechaNacimiento){
-		$this->fechaNacimiento = $fechaNacimiento;
+	public function setFechaNacimiento($fechaNacimientoNuevo){
+		$this->fechaNacimiento = $fechaNacimientoNuevo;
 	}
-	public function setContrasena($contrasena){
-		$this->contrasena = $contrasena;
+	public function setContrasena($contrasenaNuevo){
+		$this->contrasena = $contrasenaNuevo;
 	}
 		
 	public function getRutUsuario(){
-		return $this->rutUsuario;
+		return $this->rut_Usuario;
 	}
-	public function getNombre(){
+	public function getNombres(){
 		return $this->nombres;
 	}
 	public function getDireccion(){

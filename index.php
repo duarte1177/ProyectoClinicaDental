@@ -19,7 +19,7 @@
 				<form action="verFichaPaciente.php" method="get">
 					<input type="text" name="rut" />
 		<br />
-				<input type="submit"  />
+				<input type="submit" />
 				</form>
 	</BODY>	
 </HTML>

@@ -1,7 +1,6 @@
 <?PHP
-	include 'Clases/db.php';
-	include 'Clases/tipos_Usuarios.php';
-	include 'Clases/usuario.php';
+	include 'Clases/clases.php';
+	
 	if (isset ($_POST['rut'])){
 	$rut = $_POST['rut'];
 	$nombres = $_POST['nombres'];
@@ -12,7 +11,7 @@
 	$fechaNacimiento = $_POST['fechaNacimiento'];
 	$contrasena = $_POST['contrasena'];
 	
-	$tipoUsuario = new tipo_Usuario(4);
+	$tipoUsuario = new tipo_usuario(4);
 	$usuario = new usuario($rut, $nombres, $apellidos, $direccion, $telefono, $email, $fechaNacimiento, $contrasena);
 	$usuario->guardarUsuarioDB();
 	
@@ -29,20 +28,21 @@
 		<meta http-equiv="Content-Type" content="text/html; 		    charset=utf-8" />
 	<HEAD>
     <TITLE><H3>FICHA PACIENTE</H3></TITLE>
+    	<script language="javascript" type="text/javascript" src="js/validar.js"></script>
     </HEAD>
     <BODY>
-    	<FORM name="formularioRegistro" method="POST" action="crearFichaPaciente.php">
+    	<FORM name="formularioRegistro" method="POST" action="crearFichaPaciente.php" onsubmit="return validar();">
         <TABLE>
         <TR>
             <TD>NOMBRES:</TD>
             <TD>
-                <input type="text" name="nombres" size="50" maxlength="50"/>
+                <input type="text" name="nombres" size="50" maxlength="50" onkeypress="return soloLetras(event);"/>
             </TD>
         </TR>
         <TR>
             <TD>APELLIDOS:</TD>
             <TD>
-                <input type="text" name="apellidos" size="50" maxlength="50"/>
+                <input type="text" name="apellidos" size="50" maxlength="50" onkeypress="return soloLetras(event);"/>
             </TD>
         </TR>
         <TR>
@@ -54,19 +54,19 @@
         <TR>
             <TD>TELEFONO:</TD>
             <TD>
-               	<input type="text" name="telefono" size="12" maxlength="12"/>
+               	<input type="text" name="telefono" size="12" maxlength="12" onkeypress="return soloNumeros(event);"/>
             </TD>
         </TR>
         <TR>
             <TD>RUT:</TD>
             <TD>
-               	<input type="text" name="rut" size="13" maxlength="13"/>
+               	<input type="text" name="rut" size="13" maxlength="13" onkeypress="return soloRut(event);"/>
             </TD>
         </TR>
         <TR>
             <TD>E-MAIL:</TD>
             <TD>
-               	<input type="text" name="e-mail" size="65" maxlength="65"/>
+               	<input type="text" name="e-mail" size="65" maxlength="65" onkeypress="return validarEmail(event);"/>
             </TD>
         </TR>
         <TR>
